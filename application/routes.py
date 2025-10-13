@@ -12,4 +12,12 @@ def enregistrer_routes(app, db):
     @app.route('/domaines')
     def domaines():  # put application's code here
         return render_template("tables.html")
+
+    @app.route("/statistiques")
+    def statistiques():
+        return render_template("statistic.html")
+
+    @app.route("/correlations")
+    def correlations():
+        return render_template("correlations.html")
     pass

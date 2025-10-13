@@ -217,209 +217,171 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Gestion des Domaines</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Statistiques</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
 
-                <!-- Domaines Page -->
-                <div id="domains-content" class="page-content-section" style="display: none;">
-                    <div class="card">
-                        <h3 class="card-title">Filtres de recherche</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Registrar</label>
-                                <select id="registrar-filter" class="form-input">
-                                    <option value="">Tous les registrars</option>
-                                    <option value="Registrar 1">Registrar 1</option>
-                                    <option value="Registrar 2">Registrar 2</option>
-                                    <option value="Registrar 3">Registrar 3</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Nom de domaine</label>
-                                <input type="text" id="domain-name-filter" class="form-input" placeholder="Ex: exemple.tg">
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Durée</label>
-                                <select id="duration-filter" class="form-input">
-                                    <option value="">Toutes les durées</option>
-                                    <option value="1">1 an</option>
-                                    <option value="2">2 ans</option>
-                                    <option value="3">3 ans</option>
-                                    <option value="5">5 ans</option>
-                                    <option value="5+">5 ans et plus</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Statut</label>
-                                <select id="status-filter" class="form-input">
-                                    <option value="">Tous les statuts</option>
-                                    <option value="active">Actif</option>
-                                    <option value="grace">Période de grâce</option>
-                                    <option value="expired">Expiré</option>
-                                    <option value="redemption">Redemption</option>
-                                    <option value="inactive">Inactif</option>
-                                </select>
+                <!-- Content Row -->
+                <div class="row">
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total de Domaines</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> <!-- Nom de variable -->
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Date de début (D1)</label>
-                                <input type="date" id="start-date" class="form-input">
-                            </div>
-                            <div>
-                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Date de fin (D2)</label>
-                                <input type="date" id="end-date" class="form-input">
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" id="search-domains">Rechercher</button>
-                        <button class="btn btn-secondary" id="reset-filters" style="margin-left: 10px;">Réinitialiser</button>
                     </div>
 
-                    <div class="card">
-                        <h3 class="card-title">Liste des domaines (<span id="domain-count">0</span> résultats)</h3>
-                        <div class="table-container">
-                            <table id="domains-table">
-                                <thead>
-                                    <tr>
-                                        <th>Registrar</th>
-                                        <th>Nom de domaine</th>
-                                        <th>Durée</th>
-                                        <th>Création</th>
-                                        <th>Expiration</th>
-                                        <th>Statut</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="domains-table-body">
-                                    <!-- Les données seront chargées dynamiquement -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="pagination" id="pagination-controls">
-                            <!-- La pagination sera générée dynamiquement -->
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Nouveaux Domaines (Ce mois)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div> <!-- Nom de variable -->
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Registrars Actifs
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div> <!-- Nom de variable -->
+                                            </div>
+                                            <div class="col">
+                                                <div class="progress progress-sm mr-2">
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Reigistrars Inactifs</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Période de Grâce</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> <!-- Nom de variable -->
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Expirés</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div> <!-- Nom de variable -->
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Redemption
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div> <!-- Nom de variable -->
+                                            </div>
+                                            <div class="col">
+                                                <div class="progress progress-sm mr-2">
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
 
             </div>
             <!-- /.container-fluid -->
 
-            <!-- Filtre de recherche -->
-            <div class="card shadow mb-4 ml-4 mr-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Filtre de recherche</h6>
-                </div>
-                <div class="card-body">
-
-                    <!-- Première ligne - Filtres principaux -->
-                    <div class="row mb-3">
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label small font-weight-bold">Registre</label>
-                            <select class="form-select" name="type_registre">
-                                <option value="1">Tous les registres</option>
-                                <option value="2">Registre 1</option>
-                                <option value="3">Registre 2</option>
-                                <option value="4">Registre 3</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label small font-weight-bold">Nom de domaine</label>
-                            <input type="text" class="form-control" id="domainName" placeholder="Ex: exemple.tg">
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label small font-weight-bold">Durée</label>
-                            <select class="form-select" name="duree_annee">
-                                <option value="1">Toutes les durées</option>
-                                <option value="2">1 an</option>
-                                <option value="3">2 ans</option>
-                                <option value="4">3 ans</option>
-                                <option value="5">5 ans</option>
-                                <option value="6">5 ans et plus</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label small font-weight-bold">Statut</label>
-                            <select class="form-select" name="statut_domaine">
-                                <option value="1">Tous les statuts</option>
-                                <option value="2">Période de grâce</option>
-                                <option value="3">Actif</option>
-                                <option value="4">Rédemption</option>
-                                <option value="5">Inactif</option>
-                                <option value="6">Expiré</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Deuxième ligne - Dates -->
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label small font-weight-bold">Date de début (D1)</label>
-                            <input type="date" class="form-control" name="date_d1">
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label small font-weight-bold">Date de fin (D2)</label>
-                            <input type="date" class="form-control" name="date_d2">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Sortie du filtre de recherche -->
-            <div class="card shadow mb-4 ml-4 mr-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Liste des domaines trouvés (24)</h6>
-                </div>
-
-                <div class="card-body">
-
-
-
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                            <th scope="col">Registrar</th>
-                            <th scope="col">Nom de domaine</th>
-                            <th scope="col">Durée</th>
-                            <th scope="col">Création</th>
-                            <th scope="col">Expiration</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td colspan="2">Larry the Bird</td>
-                          <td>@twitter</td>
-                            <td>@mdo</td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                </div>
-        </div>
-
-        </div>
-        <!-- End of Main Content -->
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
