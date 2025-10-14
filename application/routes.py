@@ -20,4 +20,6 @@ def enregistrer_routes(app, db):
     @app.route("/correlations")
     def correlations():
         return render_template("correlations.html")
+    # @app.route("/analyse")
+    #  return render_template()
     pass
