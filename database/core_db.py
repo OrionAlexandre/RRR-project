@@ -2,7 +2,7 @@
 Ce fichier contiendra toutes les opérations liées à la gestion de la base de données.
 """
 
-from sqlalchemy import create_engine, Column, Integer
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -41,23 +41,24 @@ class DataBase:
         ]
         YEARS = [i for i in range(2021, self.year + 1)]
 
-        for year in YEARS:
-            for month in MOIS:
-                class Mois(self.Base):
-                    __tablename__ = f"{year}-{month}"
+        for year in YEARS: # Chaque anné est une table dans la base de données.
+            
+            class Mois(self.Base):
+                __tablename__ = f"{year}"
 
-                    id = Column(Integer, primary_key=True, index=True)
-                    nb_total_domaines = Column(Integer, default=0)
-                    nb_domaines_actifs = Column(Integer, default=0)
-                    nb_total_nouveaux = Column(Integer, default=0)
-                    nb_domaines_resilises = Column(Integer, default=0)
-                    nb_domaines_grace = Column(Integer, default=0)
-                    nb_domaines_redemption = Column(Integer, default=0)
-                    nb_domaines_expires = Column(Integer, default=0)
-                    nb_domaines_litigieux = Column(Integer, default=0)
+                id = Column(Integer, primary_key=True, index=True)
+                nom_registrars = Column(String, default="")
+                nb_total_domaines = Column(String, default="") # L'information est une concaténation du mois auquel elle appartient puis de la valeur de l'information.
+                nb_domaines_actifs = Column(String, default="") # Exemple : Dans la table 2023 la colonne nb_domaines_actifs "12-23428" ==> Décembre 2023, 23428 domaines sont actifs.
+                nb_total_nouveaux = Column(String, default="")
+                nb_domaines_resilises = Column(String, default="")
+                nb_domaines_grace = Column(String, default="")
+                nb_domaines_redemption = Column(String, default="")
+                nb_domaines_expires = Column(String, default="")
+                nb_domaines_litigieux = Column(String, default="")
 
-                # Création des tables.
-                self.__create_tables()
+            # Création des tables.
+            self.__create_tables()
 
         print("<core_db.py>: ✅ Base de données initialisée avec succès!")
 
