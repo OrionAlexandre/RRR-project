@@ -51,6 +51,7 @@ class DataBase:
                 nb_total_domaines = Column(String, default="") # L'information est une concaténation du mois auquel elle appartient puis de la valeur de l'information.
                 nb_domaines_actifs = Column(String, default="") # Exemple : Dans la table 2023 la colonne nb_domaines_actifs "12-23428" ==> Décembre 2023, 23428 domaines sont actifs.
                 nb_total_nouveaux = Column(String, default="")
+                nb_domaines_renouvelles = Column(String, default="")
                 nb_domaines_resilises = Column(String, default="")
                 nb_domaines_grace = Column(String, default="")
                 nb_domaines_redemption = Column(String, default="")
