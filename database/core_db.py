@@ -1,90 +1,57 @@
 """
 Ce fichier contiendra toutes les opérations liées à la gestion de la base de données.
 """
-
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-
 from datetime import datetime
 
+Base = declarative_base()
+
+class DomaineStat(Base):
+    __tablename__ = "domaine_stats"
+
+    id = Column(Integer, primary_key=True, index=True)
+    registrateur = Column(String, nullable=False)
+    annee = Column(Integer, nullable=False)
+    mois = Column(Integer, nullable=False)  # 1 à 12
+
+    nb_total_domaines = Column(Integer, default=0)
+    nb_domaines_actifs = Column(Integer, default=0)
+    nb_nouveaux = Column(Integer, default=0)
+    nb_renouvelles = Column(Integer, default=0)
+    nb_resilies = Column(Integer, default=0)
+    nb_grace = Column(Integer, default=0)
+    nb_redemption = Column(Integer, default=0)
+    nb_expires = Column(Integer, default=0)
+    nb_litigieux = Column(Integer, default=0)
+
+    __table_args__ = (UniqueConstraint('registrateur', 'annee', 'mois', name='_unique_reg_mois_annee'),)
 
 class DataBase:
-    def __init__(self):
-        self.year = datetime.now().year
-        self.__database_url = f"sqlite:///database.db"
-
-        self.__create_engine_and_base() # Création du moteur des modèles.
-        pass
+    def __init__(self, db_path="database.db"):
+        self.__database_url = f"sqlite:///{db_path}"
+        self.__create_engine_and_base()
 
     def get_database(self):
-        """
-        Se chargera de retourner la base de données.
-        :return:
-        """
+        """FastAPI-style dependency"""
         db = self.SessionLocal()
         try:
             yield db
         finally:
             db.close()
-        pass
 
     def __create_engine_and_base(self):
-        self.engine = create_engine(self.__database_url)
-        self.Base = declarative_base()
+        self.engine = create_engine(self.__database_url, connect_args={"check_same_thread": False})
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-
-        # Définition de la table.
-        MOIS = [
-            "janvier", "fevrier", "mars", "avril", "mai", "juin",
-            "juillet", "aout", "septembre", "octobre", "novembre", "decembre"
-        ]
-        YEARS = [i for i in range(2021, self.year + 1)]
-
-        for year in YEARS: # Chaque anné est une table dans la base de données.
-            
-            class Mois(self.Base):
-                __tablename__ = f"{year}"
-
-                id = Column(Integer, primary_key=True, index=True)
-                nom_registrars = Column(String, default="")
-                nb_total_domaines = Column(String, default="") # L'information est une concaténation du mois auquel elle appartient puis de la valeur de l'information.
-                nb_domaines_actifs = Column(String, default="") # Exemple : Dans la table 2023 la colonne nb_domaines_actifs "12-23428" ==> Décembre 2023, 23428 domaines sont actifs.
-                nb_total_nouveaux = Column(String, default="")
-                nb_domaines_renouvelles = Column(String, default="")
-                nb_domaines_resilises = Column(String, default="")
-                nb_domaines_grace = Column(String, default="")
-                nb_domaines_redemption = Column(String, default="")
-                nb_domaines_expires = Column(String, default="")
-                nb_domaines_litigieux = Column(String, default="")
-
-            # Création des tables.
-            self.__create_tables()
-
+        Base.metadata.create_all(bind=self.engine)
         print("<core_db.py>: ✅ Base de données initialisée avec succès!")
 
-        pass
-
-    def __create_tables(self):
-        """Crée toutes les tables dans la base de données"""
-        self.Base.metadata.create_all(bind=self.engine)
-        print("<core_db.py>: Tables créées avec succès!")
-
-    # Méthodes supplémentaires qui peuvent nous être utiles.
-
     def drop_tables(self):
-        """Supprime toutes les tables (pour le développement)"""
-        self.Base.metadata.drop_all(bind=self.engine)
+        Base.metadata.drop_all(bind=self.engine)
         print("Tables supprimées avec succès!")
 
     def reset_database(self):
-        """Réinitialise complètement la base de données"""
         self.drop_tables()
-        self.create_tables()
+        Base.metadata.create_all(bind=self.engine)
         print("Base de données réinitialisée!")
-
-
-
-
-
-
